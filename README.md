@@ -4,23 +4,22 @@
  
  ### Project description
  
- This project takes live tweets and converts it into an image that, through its color, represents the overall sentiment on whatever given search.
+This project takes live tweets and converts it into an image that, through its color, represents the overall sentiment on whatever given search.
  
- The colors of the image are determined by the polarity of the tweet (aka pleasantness) and its subjectivity (aka energy), these correspond to each of the four quandrants on the [Mood Meter](http://moodmeterapp.com/science/), a tool developed by psychologists to help promote emotional literacy.
+The colors of the image are determined by the polarity of the tweet (aka pleasantness) and its subjectivity (aka energy), these correspond to each of the four quandrants on the [Mood Meter](http://moodmeterapp.com/science/), a tool developed by psychologists to help promote emotional literacy.
  
  <b>Yellow</b> corresponds to positive sentiment and subjective (aka high-energy) tweets.
  <br><b>Green</b> corresponds to positive sentiment and objective tweets.
  <br><b>Red</b> corresponds to negative and subjective tweets.
  <br><b>Blue</b> corresponds to negative and objective tweets.
  
- The subjectivity and polarity of the tweets are determined by TextBlob, a Python library for processing textual data and performing common NLP tasks (like sentiment analysis, see Dependencies, below).
+The subjectivity and polarity of the tweets are determined by TextBlob, a Python library for processing textual data and performing common NLP tasks (like sentiment analysis, see Dependencies, below).
  
- It's been shown that different moods are better for different tasks: for example, most people are blue while they mourn. Friends consoling those mourning do best when they themselves are green (which is why it's so cool seeing the sentiment on #NationalStressAwarenessDay over 3600 tweets be so overwhelmingly green, [see Graphics section, below])
-# 
-# There is rarely a consensus of which emotion a topic will elicit related to tweets (see examples for Clinton and Trump tweets, below), but by applying this program on a macro level (looking at several hundred, even thousand tweets [though this might take 10m+ to run]), we can see whether people are regulating their emotions in a way that is most beneficial to the topic at hand.
+It's been shown that different moods are better for different tasks: for example, most people are blue while they mourn. Friends consoling those mourning do best when they themselves are green (which is why it's so cool seeing the sentiment on #NationalStressAwarenessDay over 3600 tweets be so overwhelmingly green, [see Graphics section, below])
+ 
+There is rarely a consensus of which emotion a topic will elicit related to tweets (see examples for Clinton and Trump tweets, below), but by applying this program on a macro level (looking at several hundred, even thousand tweets [though this might take 10m+ to run]), we can see whether people are regulating their emotions in a way that is most beneficial to the topic at hand.
  
 # Outline of structure of code
- 
  From the bottom up:
  - the StdOutOutListener class lets us stream live tweets given any streamlistener, which we filter by whatever 'term' the user inputs on the Flask page
  - The Flask page runs on localhost:2372 (my UNI numbers). It runs a simple HTML doc that provides two input fields: one for the Twitter search term, and another for the size of the image -- i.e. inputs of "Election" and "144" will return a 12x12 image of tweets related to the term "Election" (this number is rounded down to the nearest square value [e.g. 22-->16)
@@ -56,20 +55,21 @@
  
  ### Problems Encountered
  - TextBlob not being able to get clear sentiment / polarity on every sentence, every tweet that is returned with a value of (0.0, 0.0) is colored gray (which is unfortunate because provides a less clear image of sentiment)
-     - TextBlobs helps provide faster solutions to NLP toolkit, but wish could have more flexibility // at least provide some guess rather than 0
+  - TextBlobs helps provide faster solutions to NLP toolkit, but wish could have more flexibility // at least provide some guess rather than 0
      
  - Tweepy API when run on a specific search only returns 15 results, which was too few to create a clear picture on the sentiment. To solve this I decided to use their Streaming API, but this causes a noticeable time-delay when searching for non-trending tweets at a large volume (since pull live Tweets as they come in).
      - would have preferred to have a more robust search API
  
  ### Graphics
  Example images created (stored in /img folder when run) 
- - Stress (60x60 tweets): <img src='img/stress3600.jpg'>
+ - Stress (60x60 tweets): 
+ <br><img src='img/stress3600.jpg'>
      - NOTE: 11/2 was #NationalStressAwarenessDay on Twitter -- great to see such positivity and objectiveness re: stress on this day! [From a psych point of view, this is the best quadrant of the mood meter to be in for combatting stress :)]
      - Also note: taking a stream of 3600 tweets took approx. 15m to run. Still works fine (and image result looks nicer) but easier to test with smaller square numbers like 25, 49, 64, etc.
- - Clinton (50x50 tweets): <img src='img/clinton2500.jpg'>
- - Trump (40x40 tweets): <img src='img/trump1600.jpg'>
- - Excited (30x30 tweets): <img src='img/excited900.jpg'>
- - Mad (10x10 tweets): <img src='img/mad100.jpg'>
+ - Clinton (50x50 tweets): <br><img src='img/clinton2500.jpg'>
+ - Trump (40x40 tweets): <br><img src='img/trump1600.jpg'>
+ - Excited (30x30 tweets): <br><img src='img/excited900.jpg'>
+ - Mad (10x10 tweets): <br><img src='img/mad100.jpg'>
  
  ### Files included
  jmb2372_project.ipynb -- this file
