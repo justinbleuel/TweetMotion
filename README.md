@@ -2,7 +2,7 @@
  - Final project, COMS 3103 Fall 2016
  - by Justin Bleuel,  jmb2372
  
- ### Project description
+# Project description
  
 This project takes live tweets and converts it into an image that, through its color, represents the overall sentiment on whatever given search.
  
@@ -18,19 +18,8 @@ The subjectivity and polarity of the tweets are determined by TextBlob, a Python
 It's been shown that different moods are better for different tasks: for example, most people are blue while they mourn. Friends consoling those mourning do best when they themselves are green (which is why it's so cool seeing the sentiment on #NationalStressAwarenessDay over 3600 tweets be so overwhelmingly green, [see Graphics section, below])
  
 There is rarely a consensus of which emotion a topic will elicit related to tweets (see examples for Clinton and Trump tweets, below), but by applying this program on a macro level (looking at several hundred, even thousand tweets [though this might take 10m+ to run]), we can see whether people are regulating their emotions in a way that is most beneficial to the topic at hand.
- 
-# Outline of structure of code
- From the bottom up:
- - the StdOutOutListener class lets us stream live tweets given any streamlistener, which we filter by whatever 'term' the user inputs on the Flask page
- - The Flask page runs on localhost:2372 (my UNI numbers). It runs a simple HTML doc that provides two input fields: one for the Twitter search term, and another for the size of the image -- i.e. inputs of "Election" and "144" will return a 12x12 image of tweets related to the term "Election" (this number is rounded down to the nearest square value [e.g. 22-->16)
- - Once the tweets are streamed (this may take some time given the term's popularity as well as the number of tweets requested), the created image is shown using PIL's .show() method and will be stored in the directory that the .ipynb file exists in, under the "/img" folder, with the name "termSquareNum.jpg" (i.e "Election" "144" --> "img/Election144.jpg")
- - These terms then call their respective methods to set the image size and stream the given term
- - The tweets are stored in a list, which is then iterated through to determine each tweet's sentiment values (polarity and subjectivity) -- determined by TextBlob's API
- - Depending on these values, each tweet is assigned a color given Mood Meter's quadrants
- - These colors then fill an array which is then converted into the image
- - Each square-dot that makes up the overall image represents a given Tweet (those with (0, 0) values are assigned the color gray)
- 
- ### How to run
+
+ # How to run
  - Make sure all proper dependencies are installed (see Dependencies section, below)
  - Run the code below in the .ipynb
  - Open new tab, direct to localhost:2372
@@ -42,7 +31,7 @@ There is rarely a consensus of which emotion a topic will elicit related to twee
  
  - if you encounter a problem, interuppt the kernal in ipynb, run the code again, and refresh the localhost:2372 page
  
- ### Dependencies
+ # Dependencies
  - [Tweepy](http://www.tweepy.org/) , Twitter's API to stream live tweets
  - [TextBlob](http://textblob.readthedocs.io/en/dev/) , Python library for processing textual data / simple API for common NLP tasks (used for sentiment analysis of each tweet)
  - [PIL](http://www.pythonware.com/products/pil/), Python Imaging Library (used to create mood image)
@@ -51,14 +40,6 @@ There is rarely a consensus of which emotion a topic will elicit related to twee
  - [Math](https://docs.python.org/3/library/math.html), perform mathematical functions (i.e. sqrt() for block sizes)
  
  Can install each with: pip install 'dependency_name'
- 
- 
- ### Problems Encountered
- - TextBlob not being able to get clear sentiment / polarity on every sentence, every tweet that is returned with a value of (0.0, 0.0) is colored gray (which is unfortunate because provides a less clear image of sentiment)
-  - TextBlobs helps provide faster solutions to NLP toolkit, but wish could have more flexibility // at least provide some guess rather than 0
-     
- - Tweepy API when run on a specific search only returns 15 results, which was too few to create a clear picture on the sentiment. To solve this I decided to use their Streaming API, but this causes a noticeable time-delay when searching for non-trending tweets at a large volume (since pull live Tweets as they come in).
-     - would have preferred to have a more robust search API
  
  ### Graphics
  Example images created (stored in /img folder when run) 
