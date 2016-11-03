@@ -41,7 +41,7 @@ There is rarely a consensus of which emotion a topic will elicit related to twee
  
  Can install each with: pip install 'dependency_name'
  
- ### Graphics
+ # Graphics
  Example images created (stored in /img folder when run) 
  - Stress (60x60 tweets): 
  <br><img src='img/stress3600.jpg'>
@@ -52,7 +52,7 @@ There is rarely a consensus of which emotion a topic will elicit related to twee
  - Excited (30x30 tweets): <br><img src='img/excited900.jpg'>
  - Mad (10x10 tweets): <br><img src='img/mad100.jpg'>
  
- ### Files included
+ # Files included
  jmb2372_project.ipynb -- this file
  <br>/templates -- directory with index.html file (used for Flask page)
  <br>/img -- director with several example #TweetMotion .jpg files as well as location where images stored when program run
